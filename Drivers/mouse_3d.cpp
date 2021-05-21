@@ -1,4 +1,5 @@
 #include "mouse_3d.h"
+#include <spnav.h>
 
 const Mouse3d::control_axis Mouse3d::axis_table[] = {
     {91, SET_LAG},
@@ -22,6 +23,8 @@ const Mouse3d::control_buttons Mouse3d::buttons_table[] = {
 Mouse3d::Mouse3d(QString name, int update_time) :
     ControlBase(name, update_time)
 {
+    int fine = spnav_open();
+
     handle = hid_open(0x256f, 0xc635, NULL);
     if (handle) {
         hid_set_nonblocking(handle, 1);
@@ -90,6 +93,11 @@ void Mouse3d::updateDevice() {
 
 void Mouse3d::updateKeyboardOnly()
 {
+
+    spnav_event spnavEvent;
+    int fine = spnav_poll_event(&spnavEvent);
+    qDebug() << spnavEvent.type;
+
     QVector<unsigned int> ignore_press;
     ignore_press.clear();
 

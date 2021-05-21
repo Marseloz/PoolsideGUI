@@ -34,7 +34,6 @@ public:
 
 private:
     QTimer *update_timer;
-
     struct control_axis {
         double multiplier;
         e_actionTypes action;

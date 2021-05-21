@@ -137,6 +137,7 @@ endif ()
 target_link_libraries(${PROJECT_NAME}
         sfml-graphics sfml-window sfml-system
         hidapi-libusb
+        spnav
         Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::Core
         Qt${QT_VERSION_MAJOR}::Gui
